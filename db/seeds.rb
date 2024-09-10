@@ -9,16 +9,12 @@
 #   end
 # Seed the RottenPotatoes DB with some movies.
 more_movies = [
-  { title: 'My Neighbor Totoro', rating: 'G',
-    release_date: '16-Apr-1988' },
-  { title: 'Green Book', rating: 'PG-13',
-    release_date: '16-Nov-2018' },
-  { title: 'Parasite', rating: 'R',
-    release_date: '30-May-2019' },
-  { title: 'Nomadland', rating: 'R',
-    release_date: '19-Feb-2021' },
-  { title: 'CODA', rating: 'PG-13',
-    release_date: '13-Aug-2021' }
+  { title: 'The Matrix', rating: 'R', release_date: '1999-Mar-31' },
+  { title: 'The Godfather', rating: 'PG-18', release_date: '1972-Mar-24' },
+  { title: 'Pulp Fiction', rating: 'R', release_date: '1994-Oct-14' },
+  { title: 'The Dark Knight', rating: 'PG-18', release_date: '2008-July-18' },
+  { title: 'Inception', rating: 'PG-13', release_date: '2010-July-16' },
+  { title: 'Fight Club', rating: 'R', release_date: '1999-Oct-15' }
 ]
 
 more_movies.each do |movie|
