@@ -1,6 +1,9 @@
-<p style="color: green"><%= notice %></p>
+<p class="notice"><%= notice %></p>
 
-<%= render @movie %>
+<div class="movie-container">
+  <%= render @movie %>
+</div>
+
 
 <div>
   <%= link_to "Edit this movie", edit_movie_path(@movie) %> |

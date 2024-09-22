@@ -13,3 +13,178 @@
  *= require_tree .
  *= require_self
  */
+ /* Styles for the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+/* Styling for the sorted columns */
+th.sort-asc {
+    background-color: #e0f7fa; /* Light cyan for ascending sort */
+}
+  
+th.sort-desc {
+    background-color: #ffe0b2; /* Light orange for descending sort */
+}
+  
+th.sort-asc::after {
+    content: " ▲";
+    color: green;
+}
+  
+th.sort-desc::after {
+    content: " ▼";
+    color: red;
+}
+
+/* Highlight the row on hover */
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* General form styling */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for form input fields */
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f4f4f4;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #66afe9;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Submit button styling */
+input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Styling for link buttons */
+div a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+div a:hover {
+    background-color: #e2e6ea;
+}
+
+/* Specific styling for the H1 heading */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+/* Notice message styling */
+p.notice {
+    color: green;
+    background-color: #eaffea;
+    border: 1px solid #c7eac7;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Movie rendering container */
+.movie-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+}
+
+/* Links styling */
+div a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+div a:hover {
+    background-color: #e2e6ea;
+}
+
+/* Destroy button styling */
+div form {
+    display: inline;
+}
+
+button {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c82333;
+}
+
+  
+  
+  

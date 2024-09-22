@@ -3,7 +3,16 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    # Capture sorting parameters in session if provided
+    session[:sort] = params[:sort] if params[:sort]
+    session[:direction] = params[:direction] if params[:direction]
+  
+    # Default to title/asc if session doesn't have sorting values
+    sort_column = session[:sort] || 'title'
+    sort_direction = session[:direction] 
+  
+    # Fetch and sort movies based on session values
+    @movies = Movie.order("#{sort_column} #{sort_direction}")
   end
 
   # GET /movies/1 or /movies/1.json
@@ -22,11 +31,11 @@ class MoviesController < ApplicationController
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
-
+  
     respond_to do |format|
       if @movie.save
-        #format.html { redirect_to movie_url(@movie), notice: "Movie was successfully created." }
-        format.html { redirect_to movie_url(sort: session[:sort], direction: session[:direction]), notice: "Movie was successfully created." }
+        # Redirect with the stored sort and direction from the session
+        format.html { redirect_to movies_path(sort: session[:sort], direction: session[:direction]), notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,8 +48,8 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        #format.html { redirect_to movie_url(@movie), notice: "Movie was successfully updated." }
-        format.html { redirect_to movie_url(sort: session[:sort], direction: session[:direction]), notice: "Movie was successfully updated." }
+        # Redirect with the stored sort and direction from the session
+        format.html { redirect_to movies_path(sort: session[:sort], direction: session[:direction]), notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,6 +57,7 @@ class MoviesController < ApplicationController
       end
     end
   end
+  
 
   # DELETE /movies/1 or /movies/1.json
   def destroy
@@ -57,38 +67,6 @@ class MoviesController < ApplicationController
       format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
-
-  #For sorting
-  class MoviesController < ApplicationController
-    def index
-      # Set default sort_column and sort_direction if none are provided
-      sort_column = params[:sort] || 'title'
-      sort_direction = params[:direction] || 'asc'
-      
-      # Store sort settings in session to persist after navigation
-      session[:sort] = sort_column
-      session[:direction] = sort_direction
-  
-      @movies = Movie.order("#{sort_column} #{sort_direction}")
-    end
-  end
-
-  # app/controllers/movies_controller.rb
-  helper_method :sort_column, :sort_direction
-
-  def index
-    @movies = Movie.order("#{sort_column} #{sort_direction}")
-  end
-
-  private
-
-  def sort_column
-    Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
   
@@ -102,5 +80,14 @@ class MoviesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def movie_params
       params.require(:movie).permit(:title, :rating, :description, :release_date)
+    end
+
+      # Define sortable columns
+    def sort_column
+      Movie.column_names.include?(params[:sort]) ? params[:sort] : 'title'
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
     end
 end
