@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
     headers.forEach(header => {
       header.addEventListener('click', function() {
         headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
-        
+
+        // If the clicked header has a class, toggle the visual feedback
         if (this.classList.contains('sort-asc')) {
           this.classList.remove('sort-asc');
           this.classList.add('sort-desc');

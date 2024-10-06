@@ -6,11 +6,11 @@ class MoviesController < ApplicationController
     # Capture sorting parameters in session if provided
     session[:sort] = params[:sort] if params[:sort]
     session[:direction] = params[:direction] if params[:direction]
-  
+
     # Default to title/asc if session doesn't have sorting values
-    sort_column = session[:sort] || 'title'
-    sort_direction = session[:direction] 
-  
+    sort_column = session[:sort]
+    sort_direction = session[:direction]
+
     # Fetch and sort movies based on session values
     @movies = Movie.order("#{sort_column} #{sort_direction}")
   end
@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
-  
+
     respond_to do |format|
       if @movie.save
         # Redirect with the stored sort and direction from the session
@@ -57,7 +57,7 @@ class MoviesController < ApplicationController
       end
     end
   end
-  
+
 
   # DELETE /movies/1 or /movies/1.json
   def destroy
@@ -69,7 +69,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -82,12 +82,12 @@ class MoviesController < ApplicationController
       params.require(:movie).permit(:title, :rating, :description, :release_date)
     end
 
-      # Define sortable columns
+    # Define sortable columns
     def sort_column
-      Movie.column_names.include?(params[:sort]) ? params[:sort] : 'title'
+      Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

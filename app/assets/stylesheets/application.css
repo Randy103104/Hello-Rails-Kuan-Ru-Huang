@@ -42,7 +42,7 @@ th.sort-asc::after {
     content: " ▲";
     color: green;
 }
-  
+
 th.sort-desc::after {
     content: " ▼";
     color: red;
